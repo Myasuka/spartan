@@ -7,13 +7,15 @@ before_install:
    - sudo apt-get update -qq
 install:
    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
+   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 90
    - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev
-   - LANG=C pip install pyzmq  --user
-   - LANG=C pip install dsltools  --user
-   - LANG=C pip install cython  --user
-   - LANG=C pip install parakeet  --user
-   - LANG=C pip install scikit-learn  --user
-   - LANG=C pip install traits  --user
+   - LANG=C pip install pyzmq    -q --user
+   - LANG=C pip install dsltools -q --user
+   - LANG=C pip install cython   -q --user
+   - LANG=C pip install parakeet -q --user
+   - LANG=C pip install scikit-learn -q --user
+   - LANG=C pip install traits   -q --user
    - LANG=C python setup.py develop  --user
 addons:
   apt:
@@ -24,5 +26,4 @@ addons:
     - g++-4.8
 script:
    - $CXX --version
-   - gcc  --version
    - nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
