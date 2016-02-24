@@ -1,6 +1,6 @@
 # Spartan
 
-[![Build Status](https://travis-ci.org/spartan-array/spartan.svg?branch=master)](https://travis-ci.org/spartan-array/spartan)
+[![Build Status](https://travis-ci.org/Myasuka/spartan.svg?branch=master)](https://travis-ci.org/Myasuka/spartan)
 
 Spartan is a library for distributed array programming.  Programmers
 build up array expressions (using Numpy-like operations).  These 
