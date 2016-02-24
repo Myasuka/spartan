@@ -9,7 +9,7 @@ install:
    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 90
-   - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev
+   - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev python-nose
    - LANG=C pip install pyzmq    -q --user
    - LANG=C pip install dsltools -q --user
    - LANG=C pip install cython   -q --user
@@ -24,6 +24,4 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
-script:
-   - $CXX --version
-   - nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
+script: nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
