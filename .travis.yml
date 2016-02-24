@@ -1,5 +1,3 @@
-sudo: required
-dist: trusty
 language: python
 python:
   - "2.7"
@@ -7,6 +5,9 @@ virtualenv:
   system_site_packages: true
 before_install:
    - sudo apt-get update -qq
+   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+   - sudo apt-get install gcc-4.8 -y
+   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
    - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev
 install: 
   - LANG=C pip install pyzmq
