@@ -8,13 +8,13 @@ before_install:
 install:
    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
    - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev
-   - LANG=C pip install pyzmq
-   - LANG=C pip install dsltools
-   - LANG=C pip install cython
-   - LANG=C pip install parakeet
-   - LANG=C pip install scikit-learn
-   - LANG=C pip install traits
-   - LANG=C python setup.py develop
+   - LANG=C pip install pyzmq  --user
+   - LANG=C pip install dsltools  --user
+   - LANG=C pip install cython  --user
+   - LANG=C pip install parakeet  --user
+   - LANG=C pip install scikit-learn  --user
+   - LANG=C pip install traits  --user
+   - LANG=C python setup.py develop  --user
 addons:
   apt:
     sources:
@@ -22,5 +22,7 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
-    - clang
-script: nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
+script:
+   - $CXX --version
+   - gcc  --version
+   - nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
