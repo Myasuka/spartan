@@ -6,10 +6,7 @@ virtualenv:
 before_install:
    - sudo apt-get update -qq
 install:
-   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-   - sudo apt-get install g++-4.8 -y
-   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
-   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 90
+   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
    - sudo apt-get install -y -qq python-numpy python-scipy libzmq3-dev
    - LANG=C pip install pyzmq
    - LANG=C pip install dsltools
@@ -18,4 +15,12 @@ install:
    - LANG=C pip install scikit-learn
    - LANG=C pip install traits
    - LANG=C python setup.py develop
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - clang
 script: nosetests -v --logging-level=INFO --logging-clear-handlers --logging-format='%(filename)s:%(lineno)s [%(funcName)s] %(message)s'
